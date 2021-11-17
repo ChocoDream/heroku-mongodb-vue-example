@@ -3,14 +3,13 @@ const app = express();
 const path = require("path");
 const port = process.env.PORT || 5000;
 const middleURL = "/api";
-const { randomize } = require("./Random");
 
 //MONGODB
 const { MongoClient } = require("mongodb");
 const uri =
-  "mongodb+srv://admin:<password>@personalstuff.i38hd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
-const randomFacts = ["moo", "moooo", "I'm a dog bark bark", "bark", "baaaark"];
+  process.env.MONGODB_URI ||
+  "mongodb+srv://admin:fx3VAXbWvRFuq1Cu@cluster0.i38hd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const dbName = "factsdb";
 
 app.use(express.static(path.join(__dirname, "dist")));
 
@@ -20,10 +19,23 @@ app.get("/", (req, res) => {
 
 app.get(middleURL + "/fact", async (req, res) => {
   const client = new MongoClient(uri, {
+    useNewUrlParser: true,
     useUnifiedTopology: true,
   });
   try {
     await client.connect();
+    const db = client.db(dbName);
+    const coll = db.collection("facts");
+    const document = await coll
+      .aggregate([
+        {
+          $sample: {
+            size: 1,
+          },
+        },
+      ])
+      .toArray();
+    res.send(document[0]);
   } catch (error) {
     console.error(error);
   } finally {

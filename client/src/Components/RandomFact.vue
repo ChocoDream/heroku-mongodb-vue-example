@@ -1,6 +1,7 @@
 <template>
   <div class="fact-wrapper">
-    <h2>{{ fact }}</h2>
+    <h2>"{{ fact.text }}"</h2>
+    <h4>{{ fact.author }}</h4>
     <button class="fact-button" @click="getAnotherFact()">Another fact</button>
   </div>
 </template>
@@ -48,9 +49,11 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
 }
 
 .fact-button {
+  margin-top: 2vh;
   width: 100%;
   font-size: 1.1rem;
 }
