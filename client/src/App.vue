@@ -15,7 +15,6 @@ export default {
 
     onMounted(() => {
       const timer = setInterval(() => count.value++, 1000);
-
       return () => {
         clearInterval(timer);
       };
