@@ -1,29 +1,46 @@
 <template>
   <div class="app-wrapper">
-    <h1>Hello from Vue!</h1>
+    <h1>Hello from Vue! {{ count }} seconds since app started</h1>
+    <random-fact />
   </div>
 </template>
 
 <script>
+import { onMounted, ref } from "vue";
+import RandomFact from "./Components/RandomFact.vue";
 export default {
-  
+  components: { RandomFact },
+  setup() {
+    const count = ref(0);
+
+    onMounted(() => {
+      const timer = setInterval(() => count.value++, 1000);
+
+      return () => {
+        clearInterval(timer);
+      };
+    });
+
+    return {
+      count,
+    };
+  },
 };
 </script>
 
 <style>
-*{
+* {
   padding: 0;
   margin: 0;
 }
 
-
-.app-wrapper{
+.app-wrapper {
   background-color: rgb(27, 27, 27);
   color: aliceblue;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-
 </style>
