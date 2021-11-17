@@ -1,20 +1,28 @@
 <template>
   <div class="fact-wrapper">
-    <h2> {{fact}} </h2>
-    <button class="fact-button">Another fact</button>
+    <h2>{{ fact }}</h2>
+    <button class="fact-button" @click="getAnotherFact()">Another fact</button>
   </div>
 </template>
 
 <script>
-import { computed } from '@vue/reactivity';
+import { computed, ref } from "@vue/reactivity";
+import { randomize } from "../Utilities/Random";
+
+const randomFacts = ["moo", "moooo", "I'm a dog bark bark", "bark", "baaaark"];
 export default {
-  setup(){
-    const fact = computed(() => "moo moo")
+  setup() {
+    const fact = ref(randomize(randomFacts));
+
+    const getAnotherFact = () => {
+      fact.value = randomize(randomFacts);
+    };
 
     return {
-      fact
-    }
-  }
+      fact,
+      getAnotherFact,
+    };
+  },
 };
 </script>
 
