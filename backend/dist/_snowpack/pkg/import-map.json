@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "@vue/reactivity": "./@vue/reactivity.js",
+    "@vue/runtime-core": "./@vue/runtime-core.js",
+    "axios": "./axios.js",
+    "vue": "./vue.js"
+  }
+}

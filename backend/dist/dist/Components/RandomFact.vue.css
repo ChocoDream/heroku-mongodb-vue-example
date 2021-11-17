@@ -1,0 +1,11 @@
+
+.fact-wrapper[data-v-12252dc4] {
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fact-button[data-v-12252dc4] {
+  width: 100%;
+  font-size: 1.1rem;
+}
