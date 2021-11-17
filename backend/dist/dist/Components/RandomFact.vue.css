@@ -4,8 +4,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
 }
 .fact-button[data-v-12252dc4] {
+  margin-top: 2vh;
   width: 100%;
   font-size: 1.1rem;
 }

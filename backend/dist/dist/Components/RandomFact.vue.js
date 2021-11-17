@@ -42,7 +42,8 @@ const _hoisted_1 = { class: "fact-wrapper" }
 
 export function render(_ctx, _cache) {
   return (_openBlock(), _createElementBlock("div", _hoisted_1, [
-    _createElementVNode("h2", null, _toDisplayString(_ctx.fact), 1),
+    _createElementVNode("h2", null, "\"" + _toDisplayString(_ctx.fact.text) + "\"", 1),
+    _createElementVNode("h4", null, _toDisplayString(_ctx.fact.author), 1),
     _createElementVNode("button", {
       class: "fact-button",
       onClick: _cache[0] || (_cache[0] = $event => (_ctx.getAnotherFact()))
