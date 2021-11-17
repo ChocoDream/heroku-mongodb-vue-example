@@ -38,6 +38,8 @@ app.get(middleURL + "/fact", async (req, res) => {
         },
       ])
       .toArray();
+    const result = document[0];
+    if (!result) throw "Empty";
     res.send(document[0]);
   } catch (error) {
     console.error(error);
