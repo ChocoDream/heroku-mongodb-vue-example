@@ -10,6 +10,7 @@
     "snowpack": "^3.3.7"
   },
   "dependencies": {
+    "http-proxy": "^1.18.1",
     "vue": "^3.2.22"
   }
 }

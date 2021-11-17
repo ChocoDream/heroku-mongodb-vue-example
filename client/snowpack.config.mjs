@@ -1,4 +1,9 @@
 /** @type {import("snowpack").SnowpackUserConfig } */
+import httpProxy from "http-proxy";
+const proxy = httpProxy.createServer({
+  target: "http://localhost:5000",
+});
+
 export default {
   mount: {
     public: "/",
@@ -6,8 +11,8 @@ export default {
   },
   plugins: ["@snowpack/plugin-vue"],
   routes: [
-    /* Enable an SPA Fallback in development: */
-    // {"match": "routes", "src": ".*", "dest": "/index.html"},
+    { match: "all", src: "/api/.*", dest: (req, res) => proxy.web(req, res) },
+    { match: "routes", src: ".*", dest: "/index.html" },
   ],
   optimize: {
     /* Example: Bundle your final build: */
