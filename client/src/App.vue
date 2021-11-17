@@ -36,7 +36,7 @@ export default {
 
 .app-wrapper {
   background-color: rgb(27, 27, 27);
-  color: aliceblue;
+  color: rgb(236, 236, 236);
   height: 100vh;
   display: flex;
   flex-direction: column;
