@@ -6,16 +6,32 @@
 </template>
 
 <script>
-import { computed, ref } from "@vue/reactivity";
-import { randomize } from "../Utilities/Random";
+import { ref } from "@vue/reactivity";
+import axios from "axios";
+import { onMounted } from "@vue/runtime-core";
 
-const randomFacts = ["moo", "moooo", "I'm a dog bark bark", "bark", "baaaark"];
 export default {
   setup() {
-    const fact = ref(randomize(randomFacts));
+    const fact = ref("mooo");
 
-    const getAnotherFact = () => {
-      fact.value = randomize(randomFacts);
+    const getFact = async () => {
+      return await axios
+        .get("api/fact")
+        .then((response) => {
+          return response.data;
+        })
+        .catch((error) => {
+          console.error("ERROR CAUGHT WHEN CALLING TO SERVER", error);
+          return "mooo";
+        });
+    };
+
+    onMounted(async () => {
+      fact.value = await getFact();
+    });
+
+    const getAnotherFact = async () => {
+      fact.value = await getFact();
     };
 
     return {
